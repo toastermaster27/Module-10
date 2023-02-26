@@ -1,0 +1,25 @@
+{
+    "name": "team-profile-generator",
+    "version": "1.0.0",
+    "description": "app to create team profile generator ",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/toastermaster27/Module-10"
+    },
+    "author": "Morgan C",
+    "license": "None",
+    "homepage": "https://github.com/toastermaster27/Module-10#readme",
+    "devDependencies": {
+        "jest": "^26.0.1"
+    },
+    "dependencies": {
+        "inquirer": "^8.2.4"
+    }
+}
