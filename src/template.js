@@ -57,8 +57,7 @@ const generateEngineer = engineer => {
 };
 
 const html = [];
-html.push(team
-    .filter(employee => employee.github.getRole() === "Manager")
+html.push(team.filter(employee => employee.github.getRole() === "Manager")
     .map(manager => generateManager(manager))
     );
 html.push(team
@@ -66,7 +65,7 @@ html.push(team
     .map(engineer => generateEngineer(engineer))
     .join("")
     );
-html.pusg(team.filter(employee => employee.getRole() === "Intern").map(intern => generateInern(intern)).join(""));
+html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => generateInern(intern)).join(""));
 
 module.exports = team => {
     return `
