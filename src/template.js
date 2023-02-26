@@ -18,7 +18,7 @@ const generateTeam = team => {
 </div>
         `;
     };
-};
+
 
 const generateInern = intern => {
     return `
@@ -99,4 +99,6 @@ module.exports = team => {
     </body>
     </html>
         `;
+};
+
 };

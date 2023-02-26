@@ -42,7 +42,7 @@ function addIntern() {
     {
       type: "input",
       name: "internId",
-      message: "What is the intern's employee ID number?"
+      message: "What is the intern's employee ID?"
     },
     {
       type: "input",
@@ -52,7 +52,7 @@ function addIntern() {
     {
       type: "input",
       name: "internSchool",
-      message: "What school does the intern attend?"
+      message: "Which school does the intern attend?"
     }
   ]).then(answers => {
     const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
