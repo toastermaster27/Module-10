@@ -1,6 +1,6 @@
 const Engineer = require("../lib/engineer");
 
-const generateTeam = team => {
+function generateTeam(team) {
     const generateManager = manager => {
         return `
 <div class="card employee-card">
@@ -19,9 +19,8 @@ const generateTeam = team => {
         `;
     };
 
-
-const generateInern = intern => {
-    return `
+    const generateInern = intern => {
+        return `
 <div class="card employee-card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${intern.getName()}</h2>
@@ -36,10 +35,10 @@ const generateInern = intern => {
     </div>
 </div>
         `;
-};
+    };
 
-const generateEngineer = engineer => {
-    return `
+    const generateEngineer = engineer => {
+        return `
 <div class="card employee-card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${engineer.getName()}</h2>
@@ -54,10 +53,11 @@ const generateEngineer = engineer => {
     </div>
 </div>
         `;
-};
+    };
 
 const html = [];
-html.push(team.filter(employee => employee.github.getRole() === "Manager")
+html.push(team
+    .filter(employee => employee.getRole() === "Manager")
     .map(manager => generateManager(manager))
     );
 html.push(team
@@ -65,9 +65,10 @@ html.push(team
     .map(engineer => generateEngineer(engineer))
     .join("")
     );
-html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => generateInern(intern)).join(""));
+html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => generateInern(intern)));
+const htmlString = html.join("");
+console.log(htmlString);
 
-module.exports = team => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -92,7 +93,7 @@ module.exports = team => {
         <div class="container">
             <div class="row">
                 <div class="row team-area col-12 d-flex justify-content-center">
-                    ${generateTeam(team)}
+                    ${htmlString}
                 </div>
             </div>
         </div>
@@ -101,4 +102,4 @@ module.exports = team => {
         `;
 };
 
-};
+module.exports = generateTeam;

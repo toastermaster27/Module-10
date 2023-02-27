@@ -10,27 +10,30 @@ const generateTeam = require('./src/template');
 teamArr = [];
 
 function runApp () {
-    function createTeam () {
-      inquirer.prompt([{
-        type: "list",
-        message: "Which employee type are you adding to your team?",
-        name: "addEmployeePrompt",
-        choices: ["Manager", "Engineer", "Intern", "No more team members are needed."]
-      }]).then(function (userInput) {
-        switch(userInput.addEmployeePrompt) {
-          case "Manager":
-            addManager();
-            break;
-          case "Engineer":
-            addEngineer();
-            break;
-          case "Intern":
-            addIntern();
-            break;
-  
-          default:
-            htmlBuilder();
-        }})}}
+  createTeam();
+};
+
+function createTeam () {
+  inquirer.prompt([{
+    type: "list",
+    message: "Which employee type are you adding to your team?",
+    name: "addEmployeePrompt",
+    choices: ["Manager", "Engineer", "Intern", "No more team members are needed."]
+  }]).then(function (userInput) {
+    switch(userInput.addEmployeePrompt) {
+      case "Manager":
+        addManager();
+        break;
+      case "Engineer":
+        addEngineer();
+        break;
+      case "Intern":
+        addIntern();
+        break;
+
+      default:
+        htmlBuilder();
+    }})}
 
 function addIntern() {
   inquirer.prompt([
@@ -56,7 +59,7 @@ function addIntern() {
     }
   ]).then(answers => {
     const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-    teamArray.push(intern);
+    teamArr.push(intern);
     createTeam();
   });
 }
@@ -84,7 +87,7 @@ function addEngineer() {
     }
   ]).then(answers => {
     const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-    teamArray.push(engineer);
+    teamArr.push(engineer);
     createTeam();
   });
 }
@@ -112,7 +115,7 @@ function addManager() {
         }
     ]).then(answers => {
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-        teamArray.push(manager);
+        teamArr.push(manager);
         createTeam();
     });
 }
@@ -120,5 +123,4 @@ function htmlBuilder () {
   console.log("Team has been created.")
   fs.writeFileSync(outputpath, generateTeam(teamArr), "UTF-8")
 }
-createTeam();
 runApp();
